@@ -1,0 +1,373 @@
+
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=IT style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>#include &lt;stdio.h&gt; //contiene definizioni di macro,
+costanti e dichiarazioni di funzioni e tipi usati per le varie operazioni di
+input/output.</p>
+
+
+<p class=MsoNormal>#include &lt;stdlib.h&gt; //allocazione della memoria,
+controllo dei processi, e altre funzioni generali comprendenti anche i tipi di
+dato.</p>
+
+<p class=MsoNormal>#include &lt;string.h&gt;//contiene un insieme di funzioni utili per manipolare e lavorare con stringhe di caratteri</p>
+
+<p class=MsoNormal>#include &lt;time.h&gt; //fornisce un accesso
+standardizzato alle funzioni di acquisizione e manipolazione del tempo.</p>
+<p class=MsoNormal>#include &lt;windows.h&gt; //contiene le dichiarazioni in C/C++ per le funzioni delle Windows API..</p>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>// Struttura dati per un contatto nella rubrica</p>
+<p class=MsoNormal>typedef struct {</p>
+<p class=MsoNormal> char *nome;</p>
+<p class=MsoNormal>char *cognome;</p>
+<p class=MsoNormal> long long int numero;</p>
+<p class=MsoNormal>int chiamate_entrata;</p>
+<p class=MsoNormal>int chiamate_uscita;</p>
+<p class=MsoNormal>}identificativo;</p>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>// Prototipi</p>
+<p class=MsoNormal>void opzioni();</p>
+<p class=MsoNormal>void visualizza_numero(char *,char*);</p>
+<p class=MsoNormal>void crea_Rubrica();</p>
+<p class=MsoNormal>void visual_array();</p>
+<p class=MsoNormal>void ordinamento();</p>
+<p class=MsoNormal>void inserire_nuovo_numero();</p>
+<p class=MsoNormal>void elimina_contatto();</p>
+<p class=MsoNormal>void ricerca_ricorsiva(int primo, int ultimo, char cognome[], char nome[]);</p>
+<p class=MsoNormal>void trova_chiamate(long long int numero);</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>// Array di struct che contiene i contatti nella rubrica</p>
+<p class=MsoNormal>identificativo Rubrica[30];</p>
+
+<p class=MsoNormal>// Variabile che contiene il numero di contatti attualmente nella rubrica</p>
+
+<p class=MsoNormal>int numeri_in_rubrica = 6;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>int main()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>// Inizializza la rubrica con alcuni contatti di esempio</p>
+
+<p class=MsoNormal>crea_Rubrica();</p>
+
+<p class=MsoNormal>opzioni();</p>
+
+<p class=MsoNormal>return 0;}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>// Funzione che stampa il menu delle opzioni disponibili</p>
+<p class=MsoNormal>//Input:Prende come input un carattere a scelta dell'utente</p>
+<p class=MsoNormal>//Output: Non da un output diretto, a seconda della scelta puo' variare la Rubrica</p>
+<p class=MsoNormal>void opzioni() {</p>
+<p class=MsoNormal> char scelta;</p>
+<p class=MsoNormal>char cognome[25];</p>
+<p class=MsoNormal>char nome[25];</p>
+<p class=MsoNormal> long long int numero;</p>
+
+<p class=MsoNormal>while (1) {</p>
+
+<p class=MsoNormal>// Ordina l'array di contatti prima di stamparlo</p>
+
+<p class=MsoNormal>ordinamento();</p>
+
+<p class=MsoNormal>visual_array();</p>
+
+<p class=MsoNormal>printf("[1] Inserire nuovo numero\n");</p>
+
+<p class=MsoNormal>printf("[2] Eliminare un contatto\n");</p>
+
+<p class=MsoNormal>printf("[3] Ricerca numero attraverso Cognome e Nome\n");</p>
+
+<p class=MsoNormal>printf("[4] Registro chiamate attraverso numero di telefono\n");</p>
+
+<p class=MsoNormal>printf("[5] Exit\n");</p>
+
+<p class=MsoNormal>printf("\nInserire scelta: ");</p>
+
+<p class=MsoNormal>scanf(" %c", &scelta);</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>switch (scelta) {</p>
+<p class=MsoNormal>case '1':</p>
+<p class=MsoNormal>inserire_nuovo_numero();</p>
+<p class=MsoNormal>break; </p>
+
+<p class=MsoNormal>case '2':</p>
+<p class=MsoNormal>elimina_contatto();</p>
+<p class=MsoNormal>printf("\n");</p>
+<p class=MsoNormal>system("pause");</p>
+<p class=MsoNormal>break;</p>
+
+<p class=MsoNormal>case '3':</p>
+<p class=MsoNormal>printf("Inserisci il Cognome e il Nome da ricercare: ");</p>
+<p class=MsoNormal>scanf("%s", cognome); scanf("%s",nome);</p>
+<p class=MsoNormal>fflush(stdin);</p>
+
+<p class=MsoNormal>visualizza_numero(cognome,nome);</p>
+
+<p class=MsoNormal>printf("\n");</p>
+
+<p class=MsoNormal>system("pause");</p>
+
+<p class=MsoNormal>break</p>
+
+<p class=MsoNormal>case '4':</p>
+<p class=MsoNormal>printf("Inserisci il numero telefonico: ");</p>
+<p class=MsoNormal>scanf("%lld",&numero);</p>
+<p class=MsoNormal>trova_chiamate(numero);</p>
+
+<p class=MsoNormal>printf("\n"); </p>
+<p class=MsoNormal>system("pause");</p>
+<p class=MsoNormal>break;</p>
+
+<p class=MsoNormal>case '5':</p>
+
+<p class=MsoNormal>return;</p>
+
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>system("cls");</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>// Funzione che stampa il registro delle chiamate per un dato numero di telefono</p>
+<p class=MsoNormal>//Input: Prende dall'utente un numero intero</p>
+<p class=MsoNormal>//Output: Stampa a video le caratteristiche relative al numero se e' presente nella rubrica, se non e' presente stampa a video "Numero non trovato"</p>
+
+<p class=MsoNormal>void trova_chiamate(long long int numero) {</p>
+<p class=MsoNormal>int i;</p>
+<p class=MsoNormal>for (i = 0; i < numeri_in_rubrica; i++) {</p>
+<p class=MsoNormal>if (Rubrica[i].numero == numero) {</p>
+<p class=MsoNormal>printf("\nIl numero telefonico e' di: %s %s", Rubrica[i].cognome,Rubrica[i].nome);</p>
+<p class=MsoNormal>printf("\nLe chiamate in entrata sono: %d", Rubrica[i].chiamate_entrata);</p>
+<p class=MsoNormal>printf("\nLe chiamate in uscita sono: %d", Rubrica[i].chiamate_uscita);</p>
+
+<p class=MsoNormal>return;</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>printf("\nNumero non trovato nella rubrica.");</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+<p class=MsoNormal>// Funzione che stampa il numero di telefono associato a un cognome e un nome</p>
+<p class=MsoNormal>// Input: Prende dall'utente Nome e Cognome per la ricerca</p>
+<p class=MsoNormal>// Output: Se viene trovato stampa il suo numero di telefono, senno' stampa "contatto non trovato"</p>
+<p class=MsoNormal>void visualizza_numero(char cognome[], char nome[]) {</p>
+<p class=MsoNormal> int primo = 0;</p>
+<p class=MsoNormal>int ultimo = numeri_in_rubrica - 1;</p>
+<p class=MsoNormal>ricerca_ricorsiva(primo, ultimo, cognome, nome);</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+
+<p class=MsoNormal>// Funzione di supporto per la ricerca ricorsiva di un contatto nella rubrica</p>
+<p class=MsoNormal>void ricerca_ricorsiva(int primo, int ultimo, char cognome[], char nome[]) {</p>
+<p class=MsoNormal>if (primo > ultimo) {</p>
+
+<p class=MsoNormal>printf("\nIl cognome non si trova nella rubrica!\n");</p>
+<p class=MsoNormal>return;</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>int medio = (primo + ultimo) / 2;</p>
+<p class=MsoNormal>if (strcmp(Rubrica[medio].cognome, cognome) == 0 && strcmp(Rubrica[medio].nome, nome) == 0) {</p>
+<p class=MsoNormal>printf("\nIl numero telefonico e': %lld", Rubrica[medio].numero);</p>
+<p class=MsoNormal>return;</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>if (strcmp(Rubrica[medio].cognome, cognome) > 0 || (strcmp(Rubrica[medio].cognome, cognome) == 0 && strcmp(Rubrica[medio].nome, nome) > 0)) {</p>
+<p class=MsoNormal>ricerca_ricorsiva(primo, medio - 1, cognome, nome);</p>
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal> else {</p>
+<p class=MsoNormal>ricerca_ricorsiva(primo + 1, ultimo, cognome, nome);</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+<p class=MsoNormal>// Funzione che ordina l'array di contatti in base al cognome e al nome</p>
+
+<p class=MsoNormal>//La function non presenta input o output diretti ma cambia lo stato della rubrica andandolo a riordinare prima per il cognome e poi per il nome</p>
+
+<p class=MsoNormal>void ordinamento() {</p>
+
+<p class=MsoNormal>int i, j;</p>
+
+<p class=MsoNormal>identificativo el_da_ins;</p>
+
+<p class=MsoNormal>for (i = 1; i < numeri_in_rubrica; i++) {</p>
+
+
+<p class=MsoNormal>el_da_ins = Rubrica[i];</p>
+<p class=MsoNormal><p class=MsoNormal>j = i - 1;</p>
+<p class=MsoNormal>// Ordina per cognome e poi per nome</p>
+
+<p class=MsoNormal>while (j >= 0 && (strcmp(el_da_ins.cognome, Rubrica[j].cognome) < 0 ||
+                      (strcmp(el_da_ins.cognome, Rubrica[j].cognome) == 0 &&
+                       strcmp(el_da_ins.nome, Rubrica[j].nome) < 0))) {</p>
+<p class=MsoNormal>Rubrica[j + 1] = Rubrica[j];</p>
+<p class=MsoNormal>j--;</p>
+<p class=MsoNormal>}</p>
+<p class=MsoNormal>Rubrica[j + 1] = el_da_ins;</p>
+<p class=MsoNormal>}}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>// Funzione che inserisce un nuovo contatto nella rubrica</p>
+<p class=MsoNormal>// Input: Dati da inserire nelle Rubrica</p>
+<p class=MsoNormal>// Output: se la rubrica è piena stampa "Rubrica piena", sennò aggiunge il contatto in rubrica</p>
+<p class=MsoNormal>void inserire_nuovo_numero() {</p>
+<p class=MsoNormal>identificativo Persona;</p>
+<p class=MsoNormal>if (numeri_in_rubrica == 30) {</p>
+<p class=MsoNormal>printf("\nRubrica piena!!");</p>
+<p class=MsoNormal>} else {</p>
+<p class=MsoNormal>numeri_in_rubrica++;</p>
+<p class=MsoNormal>printf("\nInserire nel seguente ordine Nome, Cognome e numero telefonico: ");</p>
+<p class=MsoNormal>Persona.nome = malloc(50 * sizeof(char));</p>
+<p class=MsoNormal>Persona.cognome = malloc(50 * sizeof(char));</p>
+<p class=MsoNormal>scanf("%s", Persona.nome); scanf("%s", Persona.cognome); scanf("%lld", &Persona.numero);</p>
+<p class=MsoNormal>fflush(stdin);</p>
+<p class=MsoNormal>Persona.chiamate_entrata = rand() % 10;</p>
+<p class=MsoNormal>Persona.chiamate_uscita = rand() % 10;</p>
+<p class=MsoNormal>Rubrica[numeri_in_rubrica - 1] = Persona;</p>
+<p class=MsoNormal>}}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>// Funzione che stampa l'elenco dei contatti nella rubrica</p>
+<p class=MsoNormal>// Input: Array</p>
+<p class=MsoNormal>//Output: Stampa a video l'array</p>
+<p class=MsoNormal>void visual_array() {</p>
+<p class=MsoNormal>printf("Sono ora presenti in rubrica:\n");</p>
+<p class=MsoNormal> int i;</p>
+<p class=MsoNormal>for (i = 0; i < numeri_in_rubrica; i++) {</p>
+<p class=MsoNormal>printf("%s %s\n%lld\n\n", Rubrica[i].cognome,Rubrica[i].nome,Rubrica[i].numero);</p>
+<p class=MsoNormal>}}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>// Funzione che elimina un contatto dalla rubrica</p>
+<p class=MsoNormal>//Input: Nome e Cognome del contatto da eliminare</p>
+<p class=MsoNormal>//Output: Contatto eliminato se vi e' nella rubrica, senno' stampa "contatto non trovato"</p>
+<p class=MsoNormal>void elimina_contatto() {</p>
+<p class=MsoNormal>char cognome[25];</p>
+<p class=MsoNormal>char nome[25];</p>
+<p class=MsoNormal>int i;</p>
+<p class=MsoNormal>printf("Inserisci il Cognome e il Nome del contatto da eliminare: ");</p>
+<p class=MsoNormal>scanf("%s", cognome);scanf("%s",nome);</p>
+<p class=MsoNormal>for (i = 0; i < numeri_in_rubrica; i++) {</p>
+<p class=MsoNormal>if (strcmp(Rubrica[i].cognome, cognome) == 0 && strcmp(Rubrica[i].nome, nome) == 0) {</p>
+<p class=MsoNormal>int j;</p>
+
+<p class=MsoNormal>// Sposta tutti gli elementi successivi di una posizione indietro</p>
+<p class=MsoNormal>for (j = i; j < numeri_in_rubrica - 1; j++) {</p>
+<p class=MsoNormal>Rubrica[j] = Rubrica[j + 1];}</p>
+<p class=MsoNormal>numeri_in_rubrica--;</p>
+<p class=MsoNormal>printf("Contatto eliminato con successo.\n");</p>
+<p class=MsoNormal> return;</p>
+<p class=MsoNormal>}}</p>
+<p class=MsoNormal>printf("Il cognome specificato non e' presente nella rubrica.\n");}</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+<p class=MsoNormal>// Funzione che inizializza la rubrica con alcuni contatti di esempio</p>
+<p class=MsoNormal>//La function inizializza una Rubrica con alcuni contatti senza prendere alcun input e non da output diretti</p>
+<p class=MsoNormal>void crea_Rubrica() {</p>
+<p class=MsoNormal>Rubrica[0].nome = "Rolando";</p>
+<p class=MsoNormal>Rubrica[0].cognome = "Mattei";</p>
+<p class=MsoNormal>Rubrica[0].numero = 3262561717;</p>
+<p class=MsoNormal>Rubrica[0].chiamate_entrata = rand() % 10;</p>
+<p class=MsoNormal>Rubrica[0].chiamate_uscita = rand() % 10;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Rubrica[1].nome = "Girolamo";</p>
+<p class=MsoNormal>Rubrica[1].cognome = "Taddeo";</p>
+<p class=MsoNormal>Rubrica[1].numero = 3202005050;</p>
+<p class=MsoNormal>Rubrica[1].chiamate_entrata = rand() % 10;</p>
+<p class=MsoNormal>Rubrica[1].chiamate_uscita = rand() % 10;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+<p class=MsoNormal>Rubrica[2].nome = "Mario";</p>
+<p class=MsoNormal>Rubrica[2].cognome = "Rossi";</p>
+<p class=MsoNormal>Rubrica[2].numero = 3006001232;</p>
+<p class=MsoNormal>Rubrica[2].chiamate_entrata = rand() % 10;</p>
+<p class=MsoNormal>Rubrica[2].chiamate_uscita = rand() % 10;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+
+<p class=MsoNormal>Rubrica[3].nome="Giuseppe";</p>
+<p class=MsoNormal>Rubrica[3].cognome="Verdi";</p>
+<p class=MsoNormal>Rubrica[3].numero=4005006004;</p>
+<p class=MsoNormal>Rubrica[3].chiamate_entrata=rand()%10;</p>
+<p class=MsoNormal>Rubrica[3].chiamate_uscita=rand()%10;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+<p class=MsoNormal>Rubrica[4].nome="Tommaso";</p>
+<p class=MsoNormal>Rubrica[4].cognome="Ventola";</p>
+<p class=MsoNormal>Rubrica[4].numero=2006001414;</p>
+<p class=MsoNormal>Rubrica[4].chiamate_entrata=rand()%10;</p>
+<p class=MsoNormal>Rubrica[4].chiamate_uscita=rand()%10;</p>
+<p class=MsoNormal>&nbsp;</p>
+
+
+
+<p class=MsoNormal>Rubrica[5].nome="Giovanni";</p>
+<p class=MsoNormal>Rubrica[5].cognome="Tommasi";</p>
+<p class=MsoNormal>Rubrica[5].numero=3001005047;</p>
+<p class=MsoNormal>Rubrica[5].chiamate_entrata=rand()%10;</p>
+<p class=MsoNormal>Rubrica[5].chiamate_uscita=rand()%10;</p>
+<p class=MsoNormal>}</p>
+
+<center><a href="Relazione_Progetto_Elenco_Telefonico.html">Torna alla Relazione del progetto Elenco telefonico</a><gr></center>
+
+<center><a href="../Relazione_Progetto.html">Torna alla Home</a><gr></center>
+
+<p class=MsoNormal>}</p>
+
+</body>
+
+

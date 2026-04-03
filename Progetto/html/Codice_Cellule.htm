@@ -1,0 +1,232 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=IT style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>#include &lt;stdio.h&gt;  //contiene definizioni di macro,
+costanti e dichiarazioni di funzioni e tipi usati per le varie operazioni di
+input/output.</p>
+
+<p class=MsoNormal>#include &lt;stdlib.h&gt;  //allocazione della memoria,
+controllo dei processi, e altre funzioni generali comprendenti anche i tipi di
+dato.</p>
+
+<p class=MsoNormal>#include &lt;time.h&gt;   //fornisce un accesso
+standardizzato alle funzioni di acquisizione e manipolazione del tempo.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#define RIGHE 80 //definiamo  la costante RIGHE uguale a 80</p>
+
+<p class=MsoNormal>#define COLONNE 80  //definiamo  la costante COLONNE uguale a
+80</p>
+
+<p class=MsoNormal>#define OGGETTI 1000  //definiamo  la costante OGGETTI uguale a
+1000</p>
+
+<p class=MsoNormal>void inizializza_griglia(char griglia[righe][colonne]);  //prototipo  funzione per l'inizializzazione della griglia con n righe ed m colonne</p>
+
+<p class=MsoNormal>char void disposizione_oggetti(char griglia[righe][colonne]);  //prototipo  funzione per la
+disposizione casuale di k oggetti su n righe ed m colonne</p>
+
+<p class=MsoNormal>void visualizza_scacchiera(char griglia[righe][colonne]);  //prototipo  funzione per la
+visualizzazione della scacchiera di n righe ed m colonne</p>
+
+<p class=MsoNormal>void evoluzione_cellule(char griglia_corrente[righe][colonne], char griglia_seguente[righe][colonne]);  //prototipo  funzione per la simulazione dell'evoluzione delle cellule all'interno della griglia</p>
+
+<p class=MsoNormal>//main del programma</p>
+
+<p class=MsoNormal>int main()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>char griglia_corrente[righe][colonne]; //inizializzo array col nome "griglia corrente"</p>
+
+<p class=MsoNormal>char griglia_corrente[righe][colonne]; //inizializzo array col nome "griglia seguente"</p>
+
+<p class=MsoNormal>inizializza_griglia(griglia_corrente);</p>
+
+<p class=MsoNormal>disposizione_oggetti(griglia_corrente);</p>
+
+<p class=MsoNormal>//inizializzo array col nome "num_step", contenente i numeri degli step da visualizzare</p>
+<p class=MsoNormal>int num_step[]={1,2,3,4,5,10,20,30,40,50,100,150,200,250,300,350,400,450,500,550,600,700,800};</p>
+
+<p class=MsoNormal>//dicharo la variabile "totale_steps" contentente il numero di elementi presenti nell'array "num_step"</p>
+<p class=MsoNormal>int totale_steps= sizeof(num_step)/sizeof(num_step[0]);</p>
+
+
+<p class=MsoNormal>//Esegue l'evouluzione delle cellule per ogni step </p>
+
+<p class=MsoNormal>for(int step=0; step< totale_steps ; step++) {</p>
+
+<p class=MsoNormal>    evoluzione_cellule(griglia_corrente,griglia_seguente);</p>
+
+<p class=MsoNormal>    //Stampa il numero degli step e visualizza la griglia</p>
+
+<p class=MsoNormal>    printf("Step %d:\n",num_step[step]);</p>
+
+<p class=MsoNormal>    visualizza_scacchiera(griglia_seguente);</p>
+
+<p class=MsoNormal>    // Copia la griglia seguente nella griglia corrente per il prossimo step</p>
+
+
+<p class=MsoNormal>    for (int i=0;i< righe;i++) {</p>
+
+<p class=MsoNormal>       for(int j=0;j< colonne; j++) { </p>
+
+<p class=MsoNormal>         griglia_corrente[i][j]=griglia_seguente[i][j];</p>
+
+<p class=MsoNormal>       }</p>
+
+<p class=MsoNormal>    }</p>
+
+<p class=MsoNormal>return 0;</p>
+
+<p class=MsoNormal>}</p>
+
+
+
+<p class=MsoNormal>//Inizializza una griglia vuota</p>
+<p class=MsoNormal>//Input-Matrice bidimensionale</p>
+<p class=MsoNormal>//Output:Matrice bidimensionale griglia con caratteri di spazio vuoto (' ').</p>
+
+<p class=MsoNormal>void inizializza_griglia(char griglia[righe][colonne]){</p>
+
+<p class=MsoNormal>    for (int i=0;i< righe; i++) { </p>
+<p class=MsoNormal>      for (int j=0;j< colonne; j++) {</p>
+<p class=MsoNormal>        griglia[i][j]= ' ';</p>
+<p class=MsoNormal>      }</p>
+
+<p class=MsoNormal>    }</p>
+
+<p class=MsoNormal>}</p>
+
+
+
+
+
+<p class=MsoNormal>//Function per distribuire casualmente gli oggetti sulla griglia di gioco</p>
+<p class=MsoNormal>//Input: Matrice bidimensionale</p>
+<p class=MsoNormal>//Output: La matrice bidimensionale contiene caratteri '*' che rappresentano oggetti disposti casualmente.</p>
+
+<p class=MsoNormal>void disposizione_oggetti(char griglia[righe][colonne]){</p>
+
+
+<p class=MsoNormal>    srand(time(NULL));</p>
+<p class=MsoNormal>    for (int i=0;i< Num_Oggetti; i++) {</p>
+<p class=MsoNormal>       int x= rand() % righe;</p>
+<p class=MsoNormal>       int y= rand() % colonne;</p>
+<p class=MsoNormal>       griglia[x][y] = '*';</p>
+<p class=MsoNormal>    }</p>
+
+<p class=MsoNormal>}</p>
+
+
+
+<p class=MsoNormal>//Function per visualizzare a schermo la griglia di gioco</p>
+<p class=MsoNormal>//Input: Matrice bidimensionale</p>
+<p class=MsoNormal>//Output:Mostra a video il contenuto della matrice bidimensionale</p>
+
+<p class=MsoNormal>void visualizza_scacchiera(char griglia[righe][colonne]){</p>
+<p class=MsoNormal>    for (int i=0;i< righe; i++) {</p>
+<p class=MsoNormal>       for (int j=0;j< colonne;j++) {</p>
+<p class=MsoNormal>        printf("%c", griglia[i][j]);</p>
+<p class=MsoNormal>       }</p>
+<p class=MsoNormal>       printf("\n");</p>
+<p class=MsoNormal>    }</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>//Function per l'evoluzione delle cellule secondo le regole descritte nell'Introduzione</p>
+<p class=MsoNormal>//Input:Matrice bidimensionale corrente</p>
+<p class=MsoNormal>//Output: Matrice bidimensionale seguente</p>
+
+
+
+
+<p class=MsoNormal>void evoluzione_cellule(char griglia_corrente[righe][colonne], char griglia_seguente[righe][colonne]){</p>
+<p class=MsoNormal>    //Itera su ogni cella nella griglia corrente</p>
+<p class=MsoNormal><p class=MsoNormal>    for (int i=0;i< righe; i++) {</p>
+
+<p class=MsoNormal>       for (int j=0;j< colonne;j++) {</p>
+<p class=MsoNormal>        int cellule_nere=0;</p>
+
+<p class=MsoNormal>        //I due cicli for permettono il conteggio delle 8 celle adiacenti alle cella stessa</p>
+<p class=MsoNormal>        for(int ni=-1;ni<=1;ni++){</p>
+<p class=MsoNormal>          for(int nj=-1;nj<=1;nj++){</p>
+<p class=MsoNormal>            //Calcola l'indice della cella vicina utilizzando la matematica dei modulari per attraversare i bordi</p>
+
+
+<p class=MsoNormal>            int ni_index=(i+ni+righe) %righe;</p>
+<p class=MsoNormal>            int nj_index=(j+nj+colonne) %colonne;</p>
+<p class=MsoNormal>            //Controlla se la cella vicina è nera</p>
+<p class=MsoNormal>            if(griglia_corrente[ni_index][nj_index]== '*'){</p>
+<p class=MsoNormal>              cellule_nere++;</p>
+
+<p class=MsoNormal>            }</p>
+<p class=MsoNormal>          }</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>        //Applica le regole per determinare lo stato della cella nella griglia successiva</p>
+
+<p class=MsoNormal>        if(cellule_nere<4 || cellule_nere==5){</p>
+
+<p class=MsoNormal>          griglia_seguente[i][j]= ' ';</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>        else if(cellule_nere==4 || cellule_nere>6){</p>
+
+<p class=MsoNormal>          griglia_seguente[i][j]= '*';</p>
+
+<p class=MsoNormal>        }</p>
+
+
+<p class=MsoNormal>       }</p>
+<p class=MsoNormal><p class=MsoNormal>    }</p>
+
+<center><a href="Relazione_Progetto_cellule.html">Torna alla Relazione del progetto Cellule</a><gr></center>
+
+<center><a href="../Relazione_Progetto.html">Torna alla Home</a><gr></center>
+
+<p class=MsoNormal>}</p>
+</body>

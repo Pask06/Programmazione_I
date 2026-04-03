@@ -1,0 +1,135 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=IT link="#0563C1" vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+style='font-size:24.0pt;font-family:"Times New Roman",serif;color:black'>PROGETTO CELLULE</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height: normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif; color:black'><center>Algoritmo di simulazione di popolazioni di cellule. L'algoritmo considera una
+scacchiera di 80x80 caselle e dispone a caso (usando la function rand) 1000 oggetti
+(la posizione e' una coppia di numeri interi). L'algoritmo deve visualizzare la
+scacchiera, mostrando un ' ' per le caselle non occupate e mostrando una '*' per le
+caselle occupate dagli oggetti. L'algoritmo effettua la seguente simulazione.
+Ogni casella rappresenta una ''cellula'', e in particolare una casella non occupata e' una
+cellula ''bianca'' e una casella occupata e' una cellula ''nera''. La scacchiera e' dunque
+una ''fotografia'' a un certo istante (passo) della popolazione di cellule bianche e nere.
+Le cellule evolvono secondo la seguente legge: a ogni passo, ogni cellula considera il
+numero totale di cellule nere presenti nelle 9 caselle vicine (la casella della cellula
+stessa e le 8 caselle adiacenti, comprese le 4 sulle diagonali). Se il totale e' minore di 4,
+allora la cellula diventa bianca al prossimo passo, mentre se il totale e' maggiore di 6
+allora diventa nera. Se il totale e' esattamente 5, allora la cellula diventa bianca, e se il
+totale e' esattamente 4, allora diventa nera. Fare attenzione al fatto che la scacchiera
+deve essere aggiornata solo alla fine di ogni passo: cio' significa che l'algoritmo deve
+usare un array per memorizzare la scacchiera attuale e un array per memorizzare la
+scacchiera modificata. Inoltre si deve considerare che la scacchiera ''non ha bordi'',
+ovvero il bordo nord e quello sud devono essere considerati contigui e il bordo est e
+quello ovest devono essere considerati contigui. L'algoritmo deve visualizzare la
+scacchiera ai seguenti passi:
+1,2,3,4,5,10,20,30,40,50,100,50,200,250,300,350,400,450,500,550,600,700,800,
+indicando sempre con ' ' una cellula bianca e con '*'' una cellula nera.</span></p></center>
+
+
+<center><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Di seguito le tre simulazioni del programma.</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>In queste tre simulazioni il programma ha individuato le possibili
+evoluzioni delle cellule a seconda della loro disposizione all'avvio del programma</span></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Prima simulazione</span></p>
+
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'><img width=548 height=275 src="..\images\Prima simulazione.png"/span></p></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Allo step 800, le cellule vive sono quelle mostrate  in figura.</span></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Seconda simulazione</span></p>
+
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'><img width=548 height=275 src="..\images\Seconda Simulazione_0.png"/span></p></p>
+
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'><img width=548 height=275 src="..\images\Seconda Simulazione_1.png"/span></p></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Allo step 800, le cellule vive sono quelle mostrate  in figura.</span></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Terza simulazione</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'><img width=548 height=275 src="..\images\Terza Simulazione.png"/span></p></p>
+
+</p><p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal'><span style='font-size:13.5pt;font-family:"Times New Roman",serif;
+color:black'>Allo step 800, le cellule vive sono quelle mostrate  in figura.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
+normal'>&nbsp;</p></p>
+<center><a href="Codice_Cellule.htm">Codice Progetto Cellule</a><gr></center>
+
+	
+</div>
+
+</body>
+
+</html>
